@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 type deck []string
@@ -26,6 +28,16 @@ func newDeck() deck {
 // TODO: Try rewriting this as a method with `(d *deck)` as the receiver after covering pointers
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+func (d deck) shuffle() {
+	now := time.Now().UnixMilli()
+	r := rand.New(rand.NewSource(now))
+
+	for i := range d {
+		newPosition := r.Intn(len(d))
+		d[i], d[newPosition] = d[newPosition], d[i]
+	}
 }
 
 func (d deck) toString() string {
