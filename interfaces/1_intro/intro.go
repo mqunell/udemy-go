@@ -14,7 +14,7 @@ type bot interface {
 type englishBot struct{}
 type spanishBot struct{}
 
-func interfaces_main() {
+func main() {
 	eb := englishBot{}
 	sb := spanishBot{}
 

@@ -15,7 +15,7 @@ type square struct {
 	sideLength float64
 }
 
-func shapes_main() {
+func main() {
 	t := triangle{base: 5.0, height: 4.0}
 	s := square{sideLength: 3.0}
 

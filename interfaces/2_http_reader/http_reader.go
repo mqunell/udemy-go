@@ -10,7 +10,7 @@ import (
 // Implicitly implements the io.Writer interface
 type logWriter struct{}
 
-func http_main() {
+func main() {
 	resp, err := http.Get("http://google.com")
 	if err != nil {
 		fmt.Println("Error:", err)

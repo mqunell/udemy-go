@@ -6,8 +6,8 @@ import (
 )
 
 // Read a file and write its contents to the terminal
-func read_file_main() {
-	file, err := os.Open("main.go")
+func main() {
+	file, err := os.Open("text_file.txt")
 	if err != nil {
 		fmt.Println("Error opening file:", err)
 		os.Exit(1)
