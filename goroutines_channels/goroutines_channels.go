@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -28,8 +29,20 @@ func main() {
 	// }
 
 	// Call checkLink again every time the channel receives a message
-	for {
-		go checkLink(c, <-c)
+	// for {
+	// 	go checkLink(c, <-c)
+	// }
+
+	// Effectively the same loop definition as above, but more clear
+	// Values received by `c` are assigned to `link`
+	for link := range c {
+		// It's important to pass `link` as an arg to the function literal so it's copied
+		// (because Go is pass-by-value) and the goroutine doesn't reference a `link` var
+		// that is shared with another goroutine
+		go func(l string) {
+			time.Sleep(5 * time.Second)
+			checkLink(c, l)
+		}(link)
 	}
 }
 
